@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+    <div class="row">
+      <div class="m-auto col-md-6 offset-md-4 mt-5">
+        <form action="/guardias/crear/" method="POST" class="card card-body">
+          <h1 class="text-center display-3 py-3">Datos Personales</h1>
+  
+          {{error}} {{form_crear_datos_personales.as_p}} {% csrf_token %}
+  
+          <button class="btn btn-primary">Guardar Datos Personales</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

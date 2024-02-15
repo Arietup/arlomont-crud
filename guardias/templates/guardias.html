@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center display-3 py-3">Guardias</h1>
+
+      <form method="GET" action="{% url 'guardias' %}">
+        <input type="text" name="q" placeholder="Buscar">
+        <button type="submit">Buscar</button>
+      </form>
+
+      {% if query %}
+      <p>Resultados de la búsqueda para "{{ query }}":</p>
+      {% endif %}
+
+      <ul class="list-group">
+        {% for datos_personales, capacidades, puesto in guardias_datos %}
+     
+        <a class="list-group-item" href="{% url 'guardias_detalle' datos_personales.id %}">
+            <h1 class="fw-bold">{{datos_personales.cedula}} - {{datos_personales.apellidos}} </h1>
+            <header class="d-flex justify-content-between"> 
+              <p>Telefono: {{datos_personales.telefono}}</p>
+              <p>Sexo: {{datos_personales.sexo}}</p>
+            </header>
+            <header class="d-flex justify-content-between"> 
+                <p>Puesto: {{puesto.puesto_asignado}}</p>
+                <p>Licencia: {{capacidades.licencia_conducir}}</p>
+            </header>
+        </a>
+
+        {% endfor %}
+        
+      </ul>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
